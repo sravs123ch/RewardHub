@@ -23,6 +23,7 @@ import {
 import { Checkbox } from "../components/ui/checkbox";
 import { products, categories } from "../data/mockData";
 import { cn } from "../lib/utils";
+import PriceRangeFilter from "../components/ui/PriceRangeFilter";
 
 const Products = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -111,7 +112,7 @@ const Products = () => {
         </div>
       </div>
 
-      <div>
+      {/* <div>
         <h4 className="font-semibold mb-3">Points Range</h4>
         <div className="flex items-center gap-2">
           <Input
@@ -134,12 +135,23 @@ const Products = () => {
             className="w-24"
           />
         </div>
-      </div>
+      </div> */}
+
+      <div>
+  <h4 className="font-semibold mb-3">Points Range</h4>
+
+  <PriceRangeFilter
+    priceRange={priceRange}
+    setPriceRange={setPriceRange}
+    min={0}
+    max={10000}
+  />
+</div>
+
 
       <Button
         variant="outline"
         className="w-full"
-        disabled
         onClick={() => {
           setSelectedCategories([]);
           setPriceRange([0, 10000]);
@@ -264,16 +276,6 @@ const Products = () => {
                 <p className="text-lg text-muted-foreground mb-4">
                   No products found matching your criteria
                 </p>
-                {/* <Button
-                  variant="outline"
-                  onClick={() => {
-                    setSelectedCategories([]);
-                    setPriceRange([0, 10000]);
-                    setSearchParams({});
-                  }}
-                >
-                  Clear all filters
-                </Button> */}
                <Button
         variant="outline"
         className="w-full"
