@@ -24,7 +24,9 @@ export function TrendingProducts() {
           </div>
           <div>
             <h2 className="text-2xl sm:text-3xl font-bold">Trending Now</h2>
-            <p className="text-muted-foreground text-sm">Most popular rewards this month</p>
+            <p className="text-muted-foreground text-sm">
+              Most popular rewards this month
+            </p>
           </div>
         </div>
 
@@ -65,7 +67,9 @@ export function TrendingProducts() {
 
             {/* Content */}
             <div className="p-4">
-              <p className="text-xs text-muted-foreground mb-1">{product.brand}</p>
+              <p className="text-xs text-muted-foreground mb-1">
+                {product.brand}
+              </p>
               <h3 className="font-semibold mb-2 line-clamp-2 group-hover:text-primary transition-colors">
                 {product.name}
               </h3>
@@ -74,9 +78,17 @@ export function TrendingProducts() {
               </p>
 
               <div className="flex items-center justify-between">
-                <div className="flex items-center gap-1.5 text-points font-bold">
-                  <Coins className="h-4 w-4" />
-                  {product.points.toLocaleString()}
+                <div className="flex flex-col gap-0.5">
+                  <div className="flex items-center gap-1.5 text-points font-bold">
+                    <Coins className="h-4 w-4" />
+                    <span>{product.points.toLocaleString()}</span>
+                    <span className="text-xs font-normal text-muted-foreground">
+                      pts
+                    </span>
+                  </div>
+                  <span className="text-sm text-muted-foreground">
+                    ₹{product?.price.toLocaleString()}
+                  </span>
                 </div>
 
                 <Button

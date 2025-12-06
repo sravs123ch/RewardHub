@@ -56,7 +56,9 @@ export function ProductCard({ product, className }) {
         className={cn(
           "absolute top-3 right-3 z-10 p-2 rounded-full transition-all duration-200",
           "bg-background/80 backdrop-blur-sm hover:bg-background",
-          inWishlist ? "text-red-500" : "text-muted-foreground hover:text-red-500"
+          inWishlist
+            ? "text-red-500"
+            : "text-muted-foreground hover:text-red-500"
         )}
       >
         <Heart className={cn("h-4 w-4", inWishlist && "fill-current")} />
@@ -82,10 +84,19 @@ export function ProductCard({ product, className }) {
         </p>
 
         <div className="flex items-center justify-between">
-          <div className="flex items-center gap-1.5 text-points font-bold">
-            <Coins className="h-4 w-4" />
-            <span>{product.points.toLocaleString()}</span>
-            <span className="text-xs font-normal text-muted-foreground">pts</span>
+          <div className="flex flex-col gap-0.5">
+            <div className="flex items-center gap-1.5 text-points font-bold">
+              <Coins className="h-4 w-4" />
+              <span>{product.points.toLocaleString()}</span>
+              <span className="text-xs font-normal text-muted-foreground">
+                pts
+              </span>
+            </div>
+            {product.price !== undefined && (
+              <span className="text-sm text-muted-foreground">
+                ₹{product.price.toLocaleString()}
+              </span>
+            )}
           </div>
 
           <Button size="sm" onClick={handleAddToCart} className="gap-1.5">

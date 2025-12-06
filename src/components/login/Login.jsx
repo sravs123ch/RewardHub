@@ -18,7 +18,8 @@ import {
   OTP_LENGTH,
   OTP_TIMER,
 } from "../../constants/data";
-
+import { Header } from "../../components/layout/Header";
+import { Footer } from "../../components/layout/Footer";
 // Static customers data
 const STATIC_CUSTOMERS = [
   {
@@ -1120,7 +1121,10 @@ const Login = () => {
   };
 
   return (
+      <div className="min-h-screen flex flex-col bg-background">
+      <Header />
     <div className="min-h-screen w-full bg-gradient-to-br from-indigo-50 via-white to-cyan-50 flex items-center justify-center p-4">
+    
       <ToastContainer 
         position="top-right"
         autoClose={5000}
@@ -1248,7 +1252,7 @@ const Login = () => {
               {/* Demo Static Customers Info */}
               {bIsLogin && sLoginMethod === "phone" && (
                 <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                  <p className="text-sm font-medium text-blue-800 mb-1">Demo Static Customers:</p>
+                  <p className="text-sm font-medium text-blue-800 mb-1">Demo Static Employee:</p>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• Phone: 9876543210 (OTP: 123456)</li>
                     <li>• Phone: 9123456780 (OTP: 654321)</li>
@@ -1259,7 +1263,7 @@ const Login = () => {
               
               {bIsLogin && sLoginMethod === "email" && (
                 <div className="mb-4 p-3 bg-blue-50 rounded-lg border border-blue-200">
-                  <p className="text-sm font-medium text-blue-800 mb-1">Demo Static Customers:</p>
+                  <p className="text-sm font-medium text-blue-800 mb-1">Demo Static Employee:</p>
                   <ul className="text-xs text-blue-700 space-y-1">
                     <li>• Email: john.doe@example.com (Password: Password@123)</li>
                     <li>• Email: jane.smith@example.com (Password: Password@123)</li>
@@ -1715,6 +1719,8 @@ const Login = () => {
           </div>
         </div>
       </div>
+    </div>
+    <Footer />
     </div>
   );
 };
