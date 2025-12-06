@@ -4,7 +4,7 @@ import { Footer } from "../components/layout/Footer";
 import { ProductCard } from "../components/products/ProductCard";
 import { Button } from "../components/ui/button";
 import { useWishlist } from "../contexts/WishlistContext";
-
+import { Link } from "react-router-dom";
 export default function Wishlist() {
   const { items, clearWishlist } = useWishlist();
 
@@ -35,8 +35,10 @@ export default function Wishlist() {
             <p className="text-muted-foreground mb-6">
               Save items you love by clicking the heart icon on any product
             </p>
-            <Button asChild>
+             <Button asChild size="lg">
+              <Link to="/products">
               <a href="/products">Browse Products</a>
+            </Link>
             </Button>
           </div>
         ) : (
