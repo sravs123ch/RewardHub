@@ -139,6 +139,7 @@ const Products = () => {
       <Button
         variant="outline"
         className="w-full"
+        disabled
         onClick={() => {
           setSelectedCategories([]);
           setPriceRange([0, 10000]);
@@ -263,7 +264,7 @@ const Products = () => {
                 <p className="text-lg text-muted-foreground mb-4">
                   No products found matching your criteria
                 </p>
-                <Button
+                {/* <Button
                   variant="outline"
                   onClick={() => {
                     setSelectedCategories([]);
@@ -272,7 +273,18 @@ const Products = () => {
                   }}
                 >
                   Clear all filters
-                </Button>
+                </Button> */}
+               <Button
+        variant="outline"
+        className="w-full"
+        disabled
+        onClick={() => {
+          setSelectedCategories([]);
+          setPriceRange([0, 10000]);
+        }}
+      >
+        Clear Filters
+      </Button>
               </div>
             )}
           </div>

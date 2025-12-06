@@ -9,12 +9,17 @@ import heroBanner1 from "../../assets/banners/hero-banner-1.jpg";
 import heroBanner2 from "../../assets/banners/hero-banner-2.jpg";
 import heroBanner3 from "../../assets/banners/hero-banner-3.jpg";
 import heroBanner4 from "../../assets/banners/hero-banner-4.jpg";
-
+import heroBanner5 from "../../assets/banners/hero-banner-5.jpg";
+import heroBanner6 from "../../assets/banners/hero-banner-6.jpg";
+import heroBanner7 from "../../assets/banners/hero-banner-7.jpg";
 const bannerImages = {
   "/banners/hero-banner-1.jpg": heroBanner1,
   "/banners/hero-banner-2.jpg": heroBanner2,
   "/banners/hero-banner-3.jpg": heroBanner3,
   "/banners/hero-banner-4.jpg": heroBanner4,
+  "/banners/hero-banner-5.jpg": heroBanner5,
+  "/banners/hero-banner-6.jpg": heroBanner6,
+  "/banners/hero-banner-7.jpg": heroBanner7,
 };
 
 export function HeroCarousel() {

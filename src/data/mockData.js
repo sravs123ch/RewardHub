@@ -1683,29 +1683,50 @@ export const currentEmployee = {
 };
 
 export const carouselSlides = [
-  {
+     {
     id: 1,
+    title: 'Happy Birthday!',
+    subtitle: 'Celebrate your special day with exclusive birthday rewards',
+    cta: 'Claim Birthday Gift',
+    image: '/banners/hero-banner-5.jpg',
+  },
+  {
+    id: 2,
+    title: 'Work Anniversary',
+    subtitle: 'Thank you for another amazing year with us!',
+    cta: 'Celebrate Milestone',
+    image: '/banners/hero-banner-6.jpg',
+  },
+  {
+    id: 3,
+    title: 'Company Anniversary',
+    subtitle: 'Celebrating our journey together - special rewards for everyone!',
+    cta: 'Join Celebration',
+    image: '/banners/hero-banner-7.jpg',
+  },
+  {
+    id: 4,
     title: 'Celebrate Your Success',
     subtitle: 'Redeem your hard-earned points for amazing rewards',
     cta: 'Explore Rewards',
     image: '/banners/hero-banner-1.jpg',
   },
   {
-    id: 2,
+    id: 5,
     title: 'Premium Tech Awaits',
     subtitle: 'Latest gadgets now available in the rewards store',
     cta: 'Shop Electronics',
     image: '/banners/hero-banner-2.jpg',
   },
   {
-    id: 3,
+    id: 6,
     title: 'Dream Vacations',
     subtitle: 'Turn your points into unforgettable travel experiences',
     cta: 'Explore Travel',
     image: '/banners/hero-banner-3.jpg',
   },
   {
-    id: 4,
+    id: 7,
     title: 'Exclusive Rewards',
     subtitle: 'Premium gifts and vouchers just for you',
     cta: 'View All Rewards',
