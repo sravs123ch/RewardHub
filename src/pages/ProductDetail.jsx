@@ -137,17 +137,47 @@ const ProductDetail = () => {
             </p>
 
             {/* Buttons */}
-            <div className="flex flex-col sm:flex-row gap-4 mb-8">
-              <Button size="lg" className="flex-1 gap-2" onClick={handleRedeemNow} disabled={!canAfford || product.stock === 0}>
+            {/* <div className="flex flex-col sm:flex-row gap-4 mb-8">
+              <Button size="lg" className="flex-1 gap-2 max-sm:text-base" onClick={handleRedeemNow} disabled={!canAfford || product.stock === 0}>
                 <Coins className="h-5 w-5" />
                 Redeem Now
               </Button>
 
-              <Button size="lg" variant="outline" className="flex-1 gap-2" onClick={handleAddToCart} disabled={product.stock === 0}>
+              <Button size="lg" variant="outline" className="flex-1 gap-2 max-sm:text-base" onClick={handleAddToCart} disabled={product.stock === 0}>
                 <ShoppingCart className="h-5 w-5" />
                 Add to Cart
               </Button>
-            </div>
+            </div> */}
+
+            <div className="flex flex-col sm:flex-row gap-4 mb-8">
+  <Button
+    size="lg"
+    className="flex-1 gap-2 
+               max-sm:h-14 
+               max-sm:text-base 
+               max-sm:leading-[2.5rem]"
+    onClick={handleRedeemNow}
+    disabled={!canAfford || product.stock === 0}
+  >
+    <Coins className="h-5 w-5" />
+    Redeem Now
+  </Button>
+
+  <Button
+    size="lg"
+    variant="outline"
+    className="flex-1 gap-2 
+               max-sm:h-14 
+               max-sm:text-base 
+               max-sm:leading-[2.5rem]"
+    onClick={handleAddToCart}
+    disabled={product.stock === 0}
+  >
+    <ShoppingCart className="h-5 w-5" />
+    Add to Cart
+  </Button>
+</div>
+
 
             {/* Secondary Actions */}
             <div className="flex items-center gap-4 pt-6 border-t border-border">

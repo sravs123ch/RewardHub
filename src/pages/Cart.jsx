@@ -4,19 +4,44 @@
 // import { Footer } from "../components/layout/Footer";
 // import { Button } from "../components/ui/button";
 // import { useCart } from "../contexts/CartContext";
-// import { currentEmployee } from "../data/mockData";
 // import { toast } from "sonner";
+// import { useEffect, useState } from "react";
 
 // const Cart = () => {
 //   const { items, removeFromCart, updateQuantity, clearCart, totalPoints } = useCart();
-//   const canAfford = currentEmployee.points >= totalPoints;
-//   const remainingPoints = currentEmployee.points - totalPoints;
+  
+//   // State for user points from localStorage
+//   const [userPoints, setUserPoints] = useState(0);
+//   const [userName, setUserName] = useState("");
+  
+//   // Get user data from localStorage on component mount
+//   useEffect(() => {
+//     const storedPoints = localStorage.getItem("userPoints");
+//     const storedName = localStorage.getItem("userName");
+    
+//     if (storedPoints) {
+//       setUserPoints(parseInt(storedPoints, 10) || 0);
+//     }
+    
+//     if (storedName) {
+//       setUserName(storedName);
+//     }
+//   }, []);
+
+//   const canAfford = userPoints >= totalPoints;
+//   const remainingPoints = userPoints - totalPoints;
 
 //   const handleCheckout = () => {
 //     if (!canAfford) {
 //       toast.error("Insufficient points for this order");
 //       return;
 //     }
+    
+//     // Update points in localStorage after successful purchase
+//     const newPoints = remainingPoints;
+//     localStorage.setItem("userPoints", newPoints.toString());
+//     setUserPoints(newPoints);
+    
 //     toast.success("Order placed successfully! Check your email for confirmation.");
 //     clearCart();
 //   };
@@ -50,6 +75,16 @@
 //       <Header />
 //       <main className="flex-1 container py-8">
 //         <h1 className="text-3xl font-bold mb-8">Shopping Cart</h1>
+        
+//         {/* Welcome message for logged-in user */}
+//         {userName && (
+//           <div className="mb-6 p-4 bg-primary/10 rounded-lg border border-primary/20">
+//             <p className="text-primary font-medium">
+//               Welcome back, {userName}! You have{" "}
+//               <span className="font-bold">{userPoints.toLocaleString()}</span> points available.
+//             </p>
+//           </div>
+//         )}
 
 //         <div className="grid lg:grid-cols-3 gap-8">
 //           {/* Cart Items */}
@@ -138,7 +173,7 @@
 //                   <span>Total</span>
 //                   <div className="flex items-center gap-1.5 text-points">
 //                     <Coins className="h-5 w-5" />
-//                     {totalPoints.toLocaleString()}
+//                     {totalPoints.toLocaleString()} pts
 //                   </div>
 //                 </div>
 //               </div>
@@ -162,7 +197,7 @@
 //                 </div>
 
 //                 <div className="text-sm">
-//                   <p>Your balance: {currentEmployee.points.toLocaleString()} pts</p>
+//                   <p>Your balance: {userPoints.toLocaleString()} pts</p>
 
 //                   {canAfford ? (
 //                     <p>After purchase: {remainingPoints.toLocaleString()} pts</p>
@@ -185,6 +220,15 @@
 //               <p className="text-xs text-center text-muted-foreground mt-4">
 //                 Points will be deducted from your account upon confirmation
 //               </p>
+              
+//               {/* Not logged in warning */}
+//               {!userName && (
+//                 <div className="mt-4 p-3 bg-yellow-50 border border-yellow-200 rounded-lg">
+//                   <p className="text-sm text-yellow-700 text-center">
+//                     Please <Link to="/login" className="font-semibold underline">login</Link> to use your points
+//                   </p>
+//                 </div>
+//               )}
 //             </div>
 //           </div>
 //         </div>
@@ -196,7 +240,6 @@
 // };
 
 // export default Cart;
-
 
 import { Link } from "react-router-dom";
 import { Trash2, Plus, Minus, Coins, ShoppingBag, ArrowRight, AlertCircle } from "lucide-react";
@@ -287,36 +330,53 @@ const Cart = () => {
         )}
 
         <div className="grid lg:grid-cols-3 gap-8">
+          
           {/* Cart Items */}
           <div className="lg:col-span-2 space-y-4">
             {items.map(({ product, quantity }) => (
               <div
                 key={product.id}
-                className="flex gap-4 p-4 bg-card rounded-xl border border-border/50"
+                className="
+                  flex gap-4 p-4 bg-card rounded-xl border border-border/50
+                  max-[360px]:flex-col max-[360px]:items-start max-[360px]:gap-3
+                "
               >
                 <Link to={`/products/${product.id}`} className="shrink-0">
                   <img
                     src={product.image}
                     alt={product.name}
-                    className="h-24 w-24 rounded-lg object-cover"
+                    className="
+                      h-24 w-24 rounded-lg object-cover
+                      max-[360px]:h-20 max-[360px]:w-20
+                    "
                   />
                 </Link>
 
                 <div className="flex-1 min-w-0">
                   <Link
                     to={`/products/${product.id}`}
-                    className="font-semibold hover:text-primary transition-colors line-clamp-1"
+                    className="
+                      font-semibold hover:text-primary transition-colors line-clamp-1
+                      max-[360px]:line-clamp-none
+                    "
                   >
                     {product.name}
                   </Link>
-                  <p className="text-sm text-muted-foreground mb-2">{product.brand}</p>
+                  <p
+                    className="
+                      text-sm text-muted-foreground mb-2
+                      max-[360px]:text-xs
+                    "
+                  >
+                    {product.brand}
+                  </p>
                   <div className="flex items-center gap-1.5 text-points font-semibold">
                     <Coins className="h-4 w-4" />
                     {product.points.toLocaleString()} pts
                   </div>
                 </div>
 
-                <div className="flex flex-col items-end gap-2">
+                <div className="flex flex-col items-end gap-2 max-[360px]:w-full max-[360px]:flex-row max-[360px]:justify-between">
                   <Button
                     variant="ghost"
                     size="icon"
@@ -326,7 +386,12 @@ const Cart = () => {
                     <Trash2 className="h-4 w-4" />
                   </Button>
 
-                  <div className="flex items-center gap-2 border border-border rounded-lg">
+                  <div
+                    className="
+                      flex items-center gap-2 border border-border rounded-lg
+                      max-[360px]:gap-1 max-[360px]:scale-90 max-[360px]:origin-left
+                    "
+                  >
                     <Button
                       variant="ghost"
                       size="icon"
@@ -369,7 +434,7 @@ const Cart = () => {
                   <span>{totalPoints.toLocaleString()} pts</span>
                 </div>
 
-                <div className="flex justify-between font-semibold text-lg pt-4 border-t border-border">
+                <div className="flex justify-between font-semibold text-lg pt-4 border-top border-border">
                   <span>Total</span>
                   <div className="flex items-center gap-1.5 text-points">
                     <Coins className="h-5 w-5" />
